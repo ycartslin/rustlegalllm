@@ -1,0 +1,15 @@
+mod lib;
+use lib::{LegalDocument, query_model};
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let document = LegalDocument::new(
+        "Case of Interest".to_string(),
+        "Here is some legal content that we want the model to learn from.".to_string(),
+    );
+
+    let query = document.to_query("case-law-model-v1".to_string());
+    let response = query_model(query)?;
+    println!("Model response: {}", response);
+
+    Ok(())
+}
