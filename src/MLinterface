@@ -1,0 +1,8 @@
+pub fn query_model(query: Query) -> Result<String, Box<dyn std::error::Error>> {
+    let client = reqwest::blocking::Client::new();
+    let res = client.post("http://example.com/api/predict")
+        .json(&query)
+        .send()?
+        .text()?;
+    Ok(res)
+}
