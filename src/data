@@ -1,0 +1,13 @@
+impl LegalDocument {
+    pub fn new(title: String, content: String) -> Self {
+        LegalDocument { title, content }
+    }
+
+    pub fn to_query(&self, model: String) -> Query {
+        Query {
+            text: self.title.clone(),
+            context: self.content.clone(),
+            model,
+        }
+    }
+}
